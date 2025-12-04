@@ -1,0 +1,79 @@
+pick b347e6b466fe9922fe20774fb31c11c3b69eb8f0 initial upload: 2D tilemap
+pick 0996175769c6128061bd99b68bf49aa9d389edc9 readme
+pick 6460c546e7b5ece98c2483c74c9fbe9c9184c8b0 ignore console application temporary files
+pick e5427878516b90c2c7d1d21214c78ce3f4c1bcb7 create test program for BFS
+pick 125f212d96d3695bc9de1bd097be903fdbd5d405 refactor path finding code and scenes
+pick e417e598ed34093ef69249933f0899eb0fbd2a72 Add patrol
+pick e6090c3dfe63897456bcaa78932c7cdec44677ce readme
+pick b810fa6db3a11abae7da3ef3c83c9a1b9c9e0579 improved enemy controller
+pick 16e9a0b144d2c2b3f926f9e953b79f429333d39f improve patrol behavior
+pick 6120e61fdd5a88d83f6f603b37bb3cb2567dd135 test
+pick 4944cff45c87eb9bb9e96f9af7f6fea5f94d5adf layer order
+pick 225a0abe04dea2cbe16f7a662a464c66c87d9ad1 improve patrol behavior
+pick 219203fdfc04f9113b8dc2b6fe37093d661885f1 Add rotator behavior
+pick 7984693730406dca0b20c2d3a5e3e6338cf76fa5 rotate scene
+pick ab5b2ab0be4f659273f4f32d6b9ea9ed9c5a3136 pathfinding
+pick 9309632d0c78f81ceb7685537f81989d842d71e1 improve tilemap game - add procedural generation
+pick 111a30d342eab6b16fecc275eb50bbd2df61cebd change graph to interface
+pick 1c17310b00255a621e11b929164cadcbe42e1231 Changes during class
+pick 517f05b86888fa9be0161fa8c3340fd6c964dd03 Fix bug in BFS algorithm
+pick 98989cba09396f3419f7c09df743e92d82f0fe84 Fix bug in ClickMover
+pick 3ea38a8bf2d44f61d8d431a649e336182f3d6406 Fix bug in BFS algorithm
+pick e75023a9e86b8c0163c4f2da84436e5527139622 upgrade to unity 2020
+pick dcf03c9681d6245a49cbd0bf25a3563a2f5f6a03 -
+pick 2bfbb0a7fecf6d720309c9b2d406e0bd51fb2636 readme typo
+pick d4cdf6b9fc4badee613bebd5dc325e0267922c2a Enlarge camera; add functional BFS
+pick cc39770966d3d44db9c1b5f1a6ed05c6060d0102 Remove debug files
+pick bebc5a6d9ec90251dbe710114814c53e1ede36a2 Finally, a generic state machine!
+pick 5d84f4d722aa78abf20f2e0873f02fedc0357207 new input system; test solutions
+pick dc931b8a0bcbf892d83baa1bde42124197fc07d1 State machine
+pick 42ca1bf9f501862532de5a74778cbdeec694c50c update version
+pick c9f07f7db948a0b9d8f4a5d230eb3aa0c380e32a minor
+pick 8bb475dbdff512e4763d65a361e79c9459818dac week 6
+pick 651ccef303840cfe9bf897375119dacec8bee28a hex tilemap
+pick e980820ee7fb2a7fe0cbea37fde3514d6b4370db fix tilemap
+pick 75a3f7ec7f31334fa9a6e1dfbcad08275343b75e add backtrace
+pick 4867292182d0fcce3b6fea6469702c70a7932851 logerror
+pick c4bd9d8ff6e4915f4f334a6ae323e14640988532 convert to unity 6
+pick 4de08f72569fa3f73bfccbbc2536aa4152cd62e7 Fix TestBFS project
+pick 5abcd976e4753f784be3ba7cef0ada26d2b398b3 fix TestCaveGenerator
+pick 2842bb0e71e181edc052eb1ec1996a689d3620e8 updates before lesson
+pick 7b7f7a830573204557f43b0ac8f9b5f6f58bba08 changes after class
+pick b1bc7272776bb0101275f7c97fa3557f02c59b92 Upgrade to unity 6.2
+pick 51164c45168673ab92b48ea775f2641ec7e36825 remove old TestBFS
+pick cff842a2146f948bb64815b1d43be4b51c789ecc Remove TestBFS version 8
+pick 9df4928fc7d3717b63bfdbe2158ce0772fb62227 Remove old TestCaveGenerator
+pick 60abc7523fb217da2fa56331ef9ff3857be6ecaf minor edits to main programs
+pick 6b70cd2374825a17ee0387e58e426d953cb5b34c better function name
+pick ea5fa69cdc544852f219d17c2af0125b94610c44 Initial import ftom other repo
+
+# Rebase 69c1195..ea5fa69 onto 69c1195 (48 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
