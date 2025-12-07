@@ -13,7 +13,8 @@ using System;
  * Adapted by: Erel Segal-Halevi
  * Since: 2020-12
  */
-public class CaveGenerator {
+public class CaveGenerator
+{
     //Used to init the cellular automata by spreading random dots on a grid,
     //and from these dots we will generate caves.
     //The higher the fill percentage, the smaller the caves.
@@ -29,7 +30,8 @@ public class CaveGenerator {
 
     private Random random;
 
-    public CaveGenerator(float randomFillPercent=0.5f, int gridSize=100) {
+    public CaveGenerator(float randomFillPercent = 0.5f, int gridSize = 100)
+    {
         this.randomFillPercent = randomFillPercent;
         this.gridSize = gridSize;
 
@@ -39,7 +41,8 @@ public class CaveGenerator {
         random = new Random();
     }
 
-    public int[,] GetMap() {
+    public int[,] GetMap()
+    {
         return bufferOld;
     }
 
@@ -49,14 +52,20 @@ public class CaveGenerator {
      * Generate a random map.
      * The map is not smoothed; call Smooth several times in order to smooth it.
      */
-    public void RandomizeMap()  {
+    public void RandomizeMap()
+    {
         //Init the old values so we can calculate the new values
-        for (int x = 0; x < gridSize; x++) {
-            for (int y = 0; y < gridSize; y++) {
-                if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1) {
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
+                if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
+                {
                     //We dont want holes in our walls, so the border is always a wall
                     bufferOld[x, y] = 1;
-                } else {
+                }
+                else
+                {
                     //Random walls and caves
                     bufferOld[x, y] = random.NextDouble() < randomFillPercent ? 1 : 0;
                 }
@@ -69,11 +78,15 @@ public class CaveGenerator {
      * Generate caves by smoothing the data
      * Remember to always put the new results in bufferNew and use bufferOld to do the calculations
      */
-    public void SmoothMap()   {
-        for (int x = 0; x < gridSize; x++) {
-            for (int y = 0; y < gridSize; y++) {
+    public void SmoothMap()
+    {
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
                 //Border is always wall
-                if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1) {
+                if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
+                {
                     bufferNew[x, y] = 1;
                     continue;
                 }
@@ -82,11 +95,16 @@ public class CaveGenerator {
                 int surroundingWalls = GetSurroundingWallCount(x, y);
 
                 //Use some smoothing rules to generate caves
-                if (surroundingWalls > 4) {
+                if (surroundingWalls > 4)
+                {
                     bufferNew[x, y] = 1;
-                } else if (surroundingWalls == 4) {
+                }
+                else if (surroundingWalls == 4)
+                {
                     bufferNew[x, y] = bufferOld[x, y];
-                } else {
+                }
+                else
+                {
                     bufferNew[x, y] = 0;
                 }
             }
@@ -99,17 +117,22 @@ public class CaveGenerator {
 
 
     //Given a cell, how many of the 8 surrounding cells are walls?
-    private int GetSurroundingWallCount(int cellX, int cellY) {
+    private int GetSurroundingWallCount(int cellX, int cellY)
+    {
         int wallCounter = 0;
-        for (int neighborX = cellX - 1; neighborX <= cellX + 1; neighborX ++) {
-            for (int neighborY = cellY - 1; neighborY <= cellY + 1; neighborY++) {
+        for (int neighborX = cellX - 1; neighborX <= cellX + 1; neighborX++)
+        {
+            for (int neighborY = cellY - 1; neighborY <= cellY + 1; neighborY++)
+            {
                 //We dont need to care about being outside of the grid because we are never looking at the border
-                if (neighborX == cellX && neighborY == cellY) { //This is the cell itself and no neighbor!
+                if (neighborX == cellX && neighborY == cellY)
+                { //This is the cell itself and no neighbor!
                     continue;
                 }
 
                 //This neighbor is a wall
-                if (bufferOld[neighborX, neighborY] == 1) {
+                if (bufferOld[neighborX, neighborY] == 1)
+                {
                     wallCounter += 1;
                 }
             }

@@ -6,7 +6,8 @@ using UnityEngine.Tilemaps;
 /**
  * This component moves its object towards a given target position.
  */
-public class TargetMover: MonoBehaviour {
+public class TargetMover : MonoBehaviour
+{
     [SerializeField] Tilemap tilemap = null;
     [SerializeField] AllowedTiles allowedTiles = null;
 
@@ -32,8 +33,10 @@ public class TargetMover: MonoBehaviour {
     private TilemapGraph tilemapGraph = null;
     private float timeBetweenSteps;
 
-    public void SetTarget(Vector3 newTargetInWorld) {
-        if (targetInWorld != newTargetInWorld) {
+    public void SetTarget(Vector3 newTargetInWorld)
+    {
+        if (targetInWorld != newTargetInWorld)
+        {
             targetInWorld = newTargetInWorld;
             targetInGrid = tilemap.WorldToCell(targetInWorld);
             atTarget = false;
@@ -41,12 +44,15 @@ public class TargetMover: MonoBehaviour {
         }
     }
 
-    public Vector3 GetTarget() {
+    public Vector3 GetTarget()
+    {
         return targetInWorld;
     }
 
-    protected virtual void Start() {
-        if (inventory == null) {
+    protected virtual void Start()
+    {
+        if (inventory == null)
+        {
             inventory = GetComponent<PlayerInventory>();
         }
 
@@ -55,8 +61,10 @@ public class TargetMover: MonoBehaviour {
         MoveTowardsTheTarget();
     }
 
-    async void MoveTowardsTheTarget() {
-        for(;;) {
+    async void MoveTowardsTheTarget()
+    {
+        for (; ; )
+        {
             await Awaitable.WaitForSecondsAsync(timeBetweenSteps);
             if (enabled && !atTarget)
                 MakeOneStepTowardsTheTarget();
@@ -71,14 +79,18 @@ public class TargetMover: MonoBehaviour {
             Vector3Int endNode = targetInGrid;
             currentPathInGrid = BFS.GetPath(tilemapGraph, startNode, endNode, maxIterations);
             Debug.Log("new shortestPath = " + string.Join(" , ", currentPathInGrid));
-            if (currentPathInGrid.Count == 0) {
+            if (currentPathInGrid.Count == 0)
+            {
                 Debug.LogWarning($"No path found between {startNode} and {endNode}");
             }
         }
-        if (currentPathInGrid.Count <= 1) {
+        if (currentPathInGrid.Count <= 1)
+        {
             Debug.Log($"Found target");
             atTarget = true;
-        } else { // currentPathInGrid contains both source and target.
+        }
+        else
+        { // currentPathInGrid contains both source and target.
             currentPathInGrid.RemoveAt(0);  // this was the current node
             Vector3Int nextNode = currentPathInGrid[0];  // this is the new node
             transform.position = tilemap.GetCellCenterWorld(nextNode);

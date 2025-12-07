@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public bool hasBoat     { get; private set; }
-    public bool hasGoat     { get; private set; }
-    public bool hasPickaxe  { get; private set; }
+    public bool hasBoat { get; private set; }
+    public bool hasGoat { get; private set; }
+    public bool hasPickaxe { get; private set; }
 
     void OnTriggerEnter2D(Collider2D other)
     {

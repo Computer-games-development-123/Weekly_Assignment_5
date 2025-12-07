@@ -6,7 +6,8 @@
 [RequireComponent(typeof(Patroller))]
 [RequireComponent(typeof(Chaser))]
 [RequireComponent(typeof(Rotator))]
-public class EnemyControllerStateMachine: StateMachine {
+public class EnemyControllerStateMachine : StateMachine
+{
     [SerializeField] float radiusToWatch = 5f;
     [SerializeField] float probabilityToRotate = 0.2f;
     [SerializeField] float probabilityToStopRotating = 0.2f;
@@ -15,11 +16,13 @@ public class EnemyControllerStateMachine: StateMachine {
     private Patroller patroller;
     private Rotator rotator;
 
-    private float DistanceToTarget() {
+    private float DistanceToTarget()
+    {
         return Vector3.Distance(transform.position, chaser.TargetObjectPosition());
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         chaser = GetComponent<Chaser>();
         patroller = GetComponent<Patroller>();
         rotator = GetComponent<Rotator>();
@@ -27,17 +30,17 @@ public class EnemyControllerStateMachine: StateMachine {
         .AddState(patroller)     // This would be the first active state.
         .AddState(chaser)
         .AddState(rotator)
-        .AddTransition(patroller, () => DistanceToTarget()<=radiusToWatch,   chaser)
-        .AddTransition(rotator,   () => DistanceToTarget()<=radiusToWatch,   chaser)
-        .AddTransition(chaser,    () => DistanceToTarget() > radiusToWatch,  patroller)
-        .AddTransition(rotator,   () => Random.Range(0f, 1f) < probabilityToStopRotating * Time.deltaTime, patroller)
-        .AddTransition(patroller, () => Random.Range(0f, 1f) < probabilityToRotate       * Time.deltaTime, rotator)
+        .AddTransition(patroller, () => DistanceToTarget() <= radiusToWatch, chaser)
+        .AddTransition(rotator, () => DistanceToTarget() <= radiusToWatch, chaser)
+        .AddTransition(chaser, () => DistanceToTarget() > radiusToWatch, patroller)
+        .AddTransition(rotator, () => Random.Range(0f, 1f) < probabilityToStopRotating * Time.deltaTime, patroller)
+        .AddTransition(patroller, () => Random.Range(0f, 1f) < probabilityToRotate * Time.deltaTime, rotator)
         ;
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radiusToWatch);
     }
 }
- 

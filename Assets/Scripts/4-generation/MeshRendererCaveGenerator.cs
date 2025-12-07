@@ -11,7 +11,8 @@ using UnityEngine;
  * Since: 2020-12
  */
 
-public class MeshRendererCaveGenerator: MonoBehaviour {
+public class MeshRendererCaveGenerator : MonoBehaviour
+{
     [SerializeField] MeshRenderer displayPlaneRenderer;
 
     [Tooltip("The percent of walls in the initial random map")]
@@ -29,7 +30,8 @@ public class MeshRendererCaveGenerator: MonoBehaviour {
 
     private CaveGenerator caveGenerator;
 
-    void Start() {
+    void Start()
+    {
         //To get the same random numbers each time we run the script
         Random.InitState(100);
 
@@ -45,8 +47,10 @@ public class MeshRendererCaveGenerator: MonoBehaviour {
 
 
     //Do the simulation in a coroutine so we can pause and see what's going on
-    async void SimulateCavePattern() {
-        for (int i = 0; i < simulationSteps; i++) {
+    async void SimulateCavePattern()
+    {
+        for (int i = 0; i < simulationSteps; i++)
+        {
             await Awaitable.WaitForSecondsAsync(pauseTime);
 
             //Calculate the new values
@@ -62,7 +66,8 @@ public class MeshRendererCaveGenerator: MonoBehaviour {
 
     //Generate a black or white texture depending on if the pixel is cave or wall
     //Display the texture on a plane
-    private void GenerateAndDisplayTexture(int[,] data) {
+    private void GenerateAndDisplayTexture(int[,] data)
+    {
         //We are constantly creating new textures, so we have to delete old textures or the memory will keep increasing
         //The garbage collector is not collecting unused textures
         Resources.UnloadUnusedAssets();
@@ -78,8 +83,10 @@ public class MeshRendererCaveGenerator: MonoBehaviour {
 
         Color[] textureColors = new Color[gridSize * gridSize];
 
-        for (int y = 0; y < gridSize; y++) {
-            for (int x = 0; x < gridSize; x++) {
+        for (int y = 0; y < gridSize; y++)
+        {
+            for (int x = 0; x < gridSize; x++)
+            {
                 //From 2d array to 1d array
                 textureColors[y * gridSize + x] = data[x, y] == 1 ? Color.black : Color.white;
             }

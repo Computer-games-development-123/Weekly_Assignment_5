@@ -5,32 +5,38 @@
  */
 [RequireComponent(typeof(Patroller))]
 [RequireComponent(typeof(Chaser))]
-public class EnemyController: MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
     [SerializeField] float radiusToWatch = 5f;
 
     private Chaser chaser;
     private Patroller patroller;
-    private void Start() {
+    private void Start()
+    {
         chaser = GetComponent<Chaser>();
         patroller = GetComponent<Patroller>();
         chaser.enabled = false;
         patroller.enabled = true;
     }
 
-    private void Update() {
+    private void Update()
+    {
         float distanceToTarget = Vector3.Distance(transform.position, chaser.TargetObjectPosition());
-        if (distanceToTarget <= radiusToWatch) {
+        if (distanceToTarget <= radiusToWatch)
+        {
             chaser.enabled = true;
             patroller.enabled = false;
-        } else {
+        }
+        else
+        {
             patroller.enabled = true;
             chaser.enabled = false;
         }
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radiusToWatch);
     }
 }
- 

@@ -4,7 +4,8 @@ using UnityEngine.Tilemaps;
 /**
  * This component moves its object towards the given target.
  */
-public class PathFinder: MonoBehaviour {
+public class PathFinder : MonoBehaviour
+{
     [SerializeField] Tilemap tilemap = null;
     [SerializeField] AllowedTiles allowedTiles = null;
     [SerializeField] float delay = 0;
@@ -16,15 +17,18 @@ public class PathFinder: MonoBehaviour {
     [Tooltip("The object that we try to find")]
     [SerializeField] Transform target = null;
 
-    private void Start() {
+    private void Start()
+    {
         tilemapBFS = new TilemapBFS(tilemap, allowedTiles.Get(), delay, showProgress);
         timeBetweenSteps = 1 / speed;
         timeBeforeNextStep = timeBetweenSteps;
     }
 
-    void Update()  {
+    void Update()
+    {
         timeBeforeNextStep -= Time.deltaTime;
-        if (timeBeforeNextStep <= 0) {
+        if (timeBeforeNextStep <= 0)
+        {
             MakeOneStepTowardsTheTarget();
             timeBeforeNextStep += timeBetweenSteps;
         }
@@ -35,12 +39,14 @@ public class PathFinder: MonoBehaviour {
     private float timeBeforeNextStep = 0;
     private float timeBetweenSteps;
 
-    private void MakeOneStepTowardsTheTarget() {
+    private void MakeOneStepTowardsTheTarget()
+    {
         Vector3Int startNode = tilemap.WorldToCell(transform.position);
         Vector3Int endNode = tilemap.WorldToCell(target.position);
         var shortestPath = tilemapBFS.GetPath(startNode, endNode);
-        Debug.Log("shortestPath = " + string.Join(" , ",shortestPath));
-        if (shortestPath.Count > 1) {
+        Debug.Log("shortestPath = " + string.Join(" , ", shortestPath));
+        if (shortestPath.Count > 1)
+        {
             Vector3Int nextNode = shortestPath[1];
             transform.position = tilemap.GetCellCenterWorld(nextNode);
         }
