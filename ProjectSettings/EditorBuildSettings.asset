@@ -7,8 +7,12 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/3-enemies/c-patrol.unity
-    guid: cbdbd2056f2a7574295152774e1734f1
-  - enabled: 1
+    guid: 75965d1f7266484409b14455fa47cd76
+  - enabled: 0
     path: Assets/Scenes/2-player/c-click-movement.unity
-    guid: 960a6ea1a06a0f5459c10c7181cf4a11
+    guid: c3eeb63f8d1ac4745b00f528aeb383c8
+  - enabled: 1
+    path: Assets/Scenes/Main_Scene.unity
+    guid: 38d1ecc17f1f0e348923019f05e0e0a3
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
