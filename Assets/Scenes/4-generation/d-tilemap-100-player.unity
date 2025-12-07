@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 130779377}
   - component: {fileID: 130779376}
   - component: {fileID: 130779375}
+  - component: {fileID: 130779378}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -155,6 +156,7 @@ MonoBehaviour:
   maxIterations: 1000
   targetInWorld: {x: 0, y: 0, z: 0}
   targetInGrid: {x: 0, y: 0, z: 0}
+  inventory: {fileID: 815579955}
   moveTo:
     m_Name: Move To
     m_Type: 1
@@ -263,6 +265,22 @@ Transform:
   - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &130779378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130779374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac127a1be9572945a217735ebb2d510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickaxeDig
+  tilemap: {fileID: 931517250}
+  mountainTile: {fileID: 11400000, guid: 546c35550ead79941af5f505fdd175ec, type: 2}
+  floorTile: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
+  digKey: 101
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +417,50 @@ Transform:
   m_Children:
   - {fileID: 931517248}
   - {fileID: 1972678412}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &815579954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815579956}
+  - component: {fileID: 815579955}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &815579955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815579954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f8ae20fa8dbee74787f8bce1b10aea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+--- !u!4 &815579956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815579954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931517247
@@ -599,10 +661,22 @@ MonoBehaviour:
   tilemap: {fileID: 931517250}
   wallTile: {fileID: 11400000, guid: 546c35550ead79941af5f505fdd175ec, type: 2}
   floorTile: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
+  shallowWaterTile: {fileID: 11400000, guid: fbc7e53732751274190a9ea1250192b4, type: 2}
+  mediumWaterTile: {fileID: 11400000, guid: 0230b48a2cd148149bf5502ca7328478, type: 2}
+  deepWaterTile: {fileID: 11400000, guid: ea56eece63aba35469fea812356c7a92, type: 2}
+  waterSeedPercent: 0.15
+  waterSimulationSteps: 3
   randomFillPercent: 0.432
   gridSize: 100
   simulationSteps: 20
   pauseTime: 0.01
+  player: {fileID: 130779377}
+  minReachableTiles: 100
+  allowedTiles: {fileID: 1972678413}
+  boatPrefab: {fileID: 0}
+  goatPrefab: {fileID: 0}
+  pickaxePrefab: {fileID: 0}
+  maxPlacementTries: 1000
 --- !u!850595691 &1186101575
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -705,16 +779,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1972678411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0ef300f318cbf46a5a81d35a305fb9, type: 3}
+  m_Script: {fileID: 11500000, guid: 94aa9c593b15b9248a02a0b984d76a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AllowedTiles
   allowedTiles:
   - {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
   - {fileID: 11400000, guid: 8f2cab6dea1a2d147b231cc92eb1f7e2, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0cea26e1a47ac8d46850becac1a6c757, type: 2}
+  - {fileID: 11400000, guid: 2ad1759387b28444892c8549e6122652, type: 2}
+  waterTiles:
+  - {fileID: 11400000, guid: fbc7e53732751274190a9ea1250192b4, type: 2}
+  - {fileID: 11400000, guid: 0230b48a2cd148149bf5502ca7328478, type: 2}
+  - {fileID: 11400000, guid: ea56eece63aba35469fea812356c7a92, type: 2}
+  mountainTiles:
+  - {fileID: 11400000, guid: 546c35550ead79941af5f505fdd175ec, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 536966466}
   - {fileID: 130779377}
+  - {fileID: 815579956}

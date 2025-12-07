@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "05-tilemap-pathfinding.sln"
+    "dotnet.defaultSolution": "Weekly_Assignment_5.sln"
 }

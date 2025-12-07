@@ -27,6 +27,11 @@ public class TargetMover: MonoBehaviour {
 
     protected bool atTarget = true;  // This property is set to "true" whenever the object has already found the target.
 
+    [SerializeField] PlayerInventory inventory = null;
+
+    private TilemapGraph tilemapGraph = null;
+    private float timeBetweenSteps;
+
     public void SetTarget(Vector3 newTargetInWorld) {
         if (targetInWorld != newTargetInWorld) {
             targetInWorld = newTargetInWorld;
@@ -40,11 +45,12 @@ public class TargetMover: MonoBehaviour {
         return targetInWorld;
     }
 
-    private TilemapGraph tilemapGraph = null;
-    private float timeBetweenSteps;
-
     protected virtual void Start() {
-        tilemapGraph = new TilemapGraph(tilemap, allowedTiles.Get());
+        if (inventory == null) {
+            inventory = GetComponent<PlayerInventory>();
+        }
+
+        tilemapGraph = new TilemapGraph(tilemap, allowedTiles, inventory);
         timeBetweenSteps = 1 / speed;
         MoveTowardsTheTarget();
     }
@@ -60,7 +66,7 @@ public class TargetMover: MonoBehaviour {
     private void MakeOneStepTowardsTheTarget()
     {
         Vector3Int startNode = tilemap.WorldToCell(transform.position);
-        if (currentPathInGrid == null || currentPathInGrid[0] != startNode)
+        if (currentPathInGrid == null || currentPathInGrid.Count == 0 || currentPathInGrid[0] != startNode)
         {  // calculate new shortest path
             Vector3Int endNode = targetInGrid;
             currentPathInGrid = BFS.GetPath(tilemapGraph, startNode, endNode, maxIterations);
